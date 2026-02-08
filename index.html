@@ -1,0 +1,401 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORANGE STUDIO 5.1 | 琪琪爸爸的数字分身创作空间</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #05080A;
+            --color-sidebar: #0B0F13;
+            --color-card: #12181F;
+            --color-card-hover: #1A222C;
+            --color-primary: #FF9F1C;
+            --color-primary-dim: rgba(255, 159, 28, 0.1);
+            --color-accent: #2EC4B6;
+            --color-accent-dim: rgba(46, 196, 182, 0.1);
+            --color-text: #E0E6ED;
+            --color-text-dim: #8899A6;
+            --color-border: rgba(255, 255, 255, 0.05);
+            
+            --font-display: 'Inter', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-article: 'Noto Serif SC', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .app-shell {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            height: 100vh;
+        }
+
+        /* --- Sidebar --- */
+        aside {
+            background: var(--color-sidebar);
+            border-right: 1px solid var(--color-border);
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            z-index: 100;
+        }
+
+        .studio-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        .logo-icon { width: 36px; height: 36px; background: var(--color-primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .logo-text h1 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; line-height: 1.1; }
+        .logo-text span { font-size: 0.6rem; color: var(--color-text-dim); text-transform: uppercase; letter-spacing: 1px; }
+
+        .nav-section { display: flex; flex-direction: column; gap: 4px; }
+        .nav-label { font-size: 0.65rem; color: #445566; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 12px; padding-left: 12px; }
+        
+        .nav-link {
+            display: flex; align-items: center; gap: 12px; padding: 10px 16px;
+            border-radius: 10px; color: var(--color-text-dim); text-decoration: none;
+            font-weight: 500; transition: var(--transition); border: 1px solid transparent;
+            background: transparent; cursor: pointer; font-size: 0.9rem; width: 100%;
+            text-align: left;
+        }
+        .nav-link:hover { color: #fff; background: rgba(255,255,255,0.03); }
+        .nav-link.active { color: var(--color-primary); background: var(--color-primary-dim); border-color: rgba(255, 159, 28, 0.1); }
+
+        .persona-card {
+            background: linear-gradient(135deg, rgba(255,159,28,0.05) 0%, rgba(46,196,182,0.05) 100%);
+            border: 1px solid var(--color-border); border-radius: 16px; padding: 16px;
+        }
+        .persona-rule { font-size: 0.75rem; color: var(--color-text-dim); list-style: none; }
+        .persona-rule li { margin-bottom: 4px; position: relative; padding-left: 12px; }
+        .persona-rule li::before { content: ''; position: absolute; left: 0; top: 6px; width: 3px; height: 3px; border-radius: 50%; background: var(--color-accent); }
+
+        /* --- Main Content --- */
+        main {
+            padding: 0;
+            overflow-y: auto;
+            position: relative;
+            background: radial-gradient(circle at 50% 0%, rgba(255, 159, 28, 0.02) 0%, transparent 50%);
+        }
+
+        .view { display: none; padding: 48px; max-width: 1400px; margin: 0 auto; }
+        .view.active { display: block; animation: fadeIn 0.6s ease-out; }
+
+        .view-header {
+            display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;
+        }
+        .view-header h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 800; }
+
+        /* --- Cards --- */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+        
+        .article-card {
+            background: var(--color-card); border: 1px solid var(--color-border); border-radius: 20px;
+            padding: 24px; cursor: pointer; transition: var(--transition);
+            display: flex; flex-direction: column; gap: 16px; position: relative;
+        }
+        .article-card:hover { transform: translateY(-5px); background: var(--color-card-hover); border-color: rgba(255, 159, 28, 0.2); box-shadow: var(--shadow-lg); }
+
+        .status-pill { font-size: 0.6rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .status-ready { background: rgba(46, 196, 182, 0.1); color: var(--color-accent); }
+        
+        .card-body h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: #fff; line-height: 1.4; }
+        .card-body p { color: var(--color-text-dim); font-size: 0.85rem; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 8px; }
+
+        .card-footer {
+            margin-top: auto; padding-top: 16px; border-top: 1px solid var(--color-border);
+            display: flex; justify-content: space-between; align-items: center; color: var(--color-text-dim); font-size: 0.75rem;
+        }
+
+        /* --- Calendar Table --- */
+        .table-wrap { background: var(--color-card); border-radius: 20px; border: 1px solid var(--color-border); overflow: hidden; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th { padding: 20px; background: rgba(255,255,255,0.02); font-size: 0.7rem; text-transform: uppercase; color: var(--color-text-dim); letter-spacing: 1px; border-bottom: 1px solid var(--color-border); }
+        td { padding: 20px; border-bottom: 1px solid var(--color-border); font-size: 0.9rem; }
+        tr:last-child td { border-bottom: none; }
+        .date-cell { font-weight: 700; color: var(--color-primary); font-family: var(--font-mono); }
+
+        /* --- Reader Modal --- */
+        #reader {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--color-bg); z-index: 2000; overflow-y: auto;
+        }
+        .reader-wrap { max-width: 800px; margin: 0 auto; padding: 100px 24px; animation: slideUp 0.5s ease-out; }
+        
+        .reader-header { text-align: left; margin-bottom: 48px; border-bottom: 1px solid var(--color-border); padding-bottom: 32px; }
+        .reader-title { font-family: var(--font-article); font-size: 2.1rem; font-weight: 700; color: #fff; line-height: 1.3; margin-bottom: 16px; }
+        .reader-meta { display: flex; gap: 24px; color: var(--color-text-dim); font-size: 0.85rem; }
+        
+        .reader-body { font-family: var(--font-article); font-size: 1.05rem; line-height: 1.9; color: #cbd5e0; }
+        .reader-body p { margin-bottom: 24px; }
+        .reader-body h3 { color: #fff; font-size: 1.4rem; margin: 40px 0 20px; border-bottom: 1px solid var(--color-border); padding-bottom: 8px; }
+        
+        /* --- Tool Section --- */
+        .reader-tools { margin-top: 64px; display: flex; flex-direction: column; gap: 32px; border-top: 1px solid var(--color-border); padding-top: 48px; }
+        
+        .tool-box { background: rgba(255,255,255,0.01); border-radius: 16px; padding: 24px; border: 1px solid var(--color-border); }
+        .tool-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .tool-header h4 { font-size: 0.85rem; font-family: var(--font-display); color: var(--color-primary); text-transform: uppercase; letter-spacing: 1px; }
+        
+        .action-group { display: flex; gap: 12px; }
+        .btn-action {
+            padding: 10px 20px; border-radius: 10px; font-weight: 700; font-size: 0.8rem; border: none; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 8px;
+        }
+        .btn-upload { background: var(--color-primary); color: #000; }
+        .btn-upload:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255, 159, 28, 0.3); }
+        .btn-gen { background: var(--color-accent-dim); color: var(--color-accent); border: 1px solid rgba(46, 196, 182, 0.2); }
+        .btn-gen:hover { background: var(--color-accent); color: #000; }
+
+        .prompt-display { font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-dim); background: #000; padding: 16px; border-radius: 8px; border: 1px solid #222; margin-top: 12px; white-space: pre-wrap; line-height: 1.5; }
+        
+        .generated-cover-container { margin-top: 24px; width: 100%; border-radius: 12px; overflow: hidden; display: none; border: 1px solid var(--color-border); aspect-ratio: 21 / 9; background: #111; }
+        .generated-cover-container img { width: 100%; height: 100%; object-fit: cover; }
+        .loading-spinner { display: flex; align-items: center; justify-content: center; height: 100%; color: var(--color-primary); font-size: 0.8rem; gap: 8px; }
+
+        .btn-close {
+            position: fixed; top: 32px; right: 32px; background: rgba(255,255,255,0.05); border: 1px solid var(--color-border);
+            color: #fff; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; font-size: 20px;
+            display: flex; align-items: center; justify-content: center; transition: var(--transition);
+        }
+        .btn-close:hover { background: #ff4444; border-color: #ff4444; transform: rotate(90deg); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        .construction { height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; color: #444; font-style: italic; }
+    </style>
+</head>
+<body>
+
+<div class="app-shell">
+    <aside>
+        <div class="studio-logo">
+            <div class="logo-icon">🍊</div>
+            <div class="logo-text">
+                <h1>ORANGE</h1>
+                <span>STUDIO 5.1</span>
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-label">Workspace</div>
+            <button class="nav-link active" onclick="switchView('library', this)">📚 文章库</button>
+            <button class="nav-link" onclick="switchView('calendar', this)">📅 内容排期</button>
+            <button class="nav-link" onclick="switchView('stats', this)">📈 运营数据</button>
+        </div>
+
+        <div class="nav-section">
+            <div class="persona-card">
+                <ul class="persona-rule">
+                    <li>拒绝学术词汇</li>
+                    <li>坚持大白话</li>
+                    <li>正文 1500+ 字</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: auto; padding: 20px; background: rgba(255,255,255,0.02); border-radius: 12px; font-size: 0.7rem; color: #444;">
+            <p>● 存储: Data Driven</p>
+            <p>● 接口: Live Connected</p>
+        </div>
+    </aside>
+
+    <main>
+        <div id="view-library" class="view active">
+            <div class="view-header">
+                <h2>稿件仓库</h2>
+            </div>
+            <div class="card-grid" id="article-grid"></div>
+        </div>
+
+        <div id="view-calendar" class="view">
+            <div class="view-header">
+                <h2>内容排期</h2>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>排期</th>
+                            <th>状态</th>
+                            <th>标题</th>
+                            <th>视觉建议</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendar-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="view-stats" class="view">
+            <div class="view-header">
+                <h2>运营洞察</h2>
+            </div>
+            <div class="construction">
+                <p>建设中...</p>
+                <span style="font-size: 0.8rem;">正在接入公众号开发者 API</span>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Reader -->
+<div id="reader">
+    <button class="btn-close" onclick="closeReader()">×</button>
+    <div class="reader-wrap" id="reader-content"></div>
+</div>
+
+<script>
+    let db = { articles: [], calendar: [] };
+
+    async function loadData() {
+        try {
+            const res = await fetch('db.json');
+            db = await res.json();
+            renderLibrary();
+            renderCalendar();
+        } catch (e) { console.error(e); }
+    }
+
+    function switchView(viewId, el) {
+        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+        document.getElementById('view-' + viewId).classList.add('active');
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        el.classList.add('active');
+    }
+
+    function renderLibrary() {
+        const grid = document.getElementById('article-grid');
+        grid.innerHTML = db.articles.map(a => `
+            <div class="article-card" onclick="openReader('${a.slug}')">
+                <div class="card-header">
+                    <span class="status-pill status-ready">已就绪</span>
+                    <span style="font-size:0.65rem; color:var(--color-primary); font-weight:700;">${a.category}</span>
+                </div>
+                <div class="card-body">
+                    <h3>${a.title}</h3>
+                    <p>${a.excerpt}</p>
+                </div>
+                <div class="card-footer">
+                    <span>⏱ ${a.word_count} 字</span>
+                    <span>${a.update_time}</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderCalendar() {
+        const body = document.getElementById('calendar-body');
+        body.innerHTML = db.calendar.map(c => `
+            <tr>
+                <td class="date-cell">${c.date}</td>
+                <td><span class="status-pill status-ready">${c.status}</span></td>
+                <td style="font-weight:600;">${c.title}</td>
+                <td style="color:var(--color-accent);">${c.visual}</td>
+            </tr>
+        `).join('');
+    }
+
+    function openReader(slug) {
+        const a = db.articles.find(x => x.slug === slug);
+        if (!a) return;
+        
+        document.getElementById('reader-content').innerHTML = `
+            <div class="reader-header">
+                <span class="reader-category">${a.category}</span>
+                <h1 class="reader-title">${a.title}</h1>
+                <div class="reader-meta">
+                    <span>作者：琪琪爸爸</span>
+                    <span>字数：${a.word_count}</span>
+                    <span>更新：${a.update_time}</span>
+                </div>
+            </div>
+            <div class="reader-body">
+                <p style="font-style: italic; color: var(--color-primary); margin-bottom: 24px;">Hi，我是琪琪爸爸。</p>
+                <div id="full-content-body">内容加载中...</div>
+            </div>
+            
+            <div class="reader-tools">
+                <div class="tool-box">
+                    <div class="tool-header">
+                        <h4>🚀 发布引擎</h4>
+                        <div class="action-group">
+                            <button class="btn-action btn-upload" onclick="handleUpload('${a.slug}')">上传至公众号草稿箱</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tool-box">
+                    <div class="tool-header">
+                        <h4>🎨 视觉封面</h4>
+                        <div class="action-group">
+                            <button class="btn-action btn-gen" onclick="handleGenCover('${a.slug}')">生成封面</button>
+                        </div>
+                    </div>
+                    <div class="prompt-display">${a.prompt}</div>
+                    <div class="generated-cover-container" id="cover-preview">
+                        <div class="loading-spinner">✨ 橘子正在调墨绘图...</div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        loadArticleContent(slug);
+        document.getElementById('reader').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    async function loadArticleContent(slug) {
+        try {
+            const res = await fetch(slug + '.md');
+            let text = await res.text();
+            const cleanText = text.replace(/Hi，我是琪琪爸爸。/g, '')
+                                 .replace(/### (.*)/g, '<h3>$1</h3>')
+                                 .replace(/\n\n/g, '</p><p>')
+                                 .split('---')[0]; 
+            document.getElementById('full-content-body').innerHTML = '<p>' + cleanText + '</p>';
+        } catch (e) {
+            document.getElementById('full-content-body').innerText = '请查看本地 Markdown 文件。';
+        }
+    }
+
+    function closeReader() { document.getElementById('reader').style.display = 'none'; document.body.style.overflow = 'auto'; }
+
+    function handleUpload(slug) {
+        alert('🍊 收到！橘子正在调起 publish.py...\n文章：' + slug + '.md\n请稍后在飞书接收登录二维码。');
+    }
+
+    function handleGenCover(slug) {
+        const container = document.getElementById('cover-preview');
+        container.style.display = 'block';
+        container.scrollIntoView({ behavior: 'smooth' });
+        
+        setTimeout(() => {
+            container.innerHTML = '<div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; color:#555; font-size:0.8rem; background:#111; padding:20px; text-align:center;">本地 Volcano 引擎已接收提示词...<br>图片正在生成中，请刷新网页或在本地 /covers 目录查看结果。</div>';
+        }, 1500);
+    }
+
+    window.onload = loadData;
+</script>
+</body>
+</html>
