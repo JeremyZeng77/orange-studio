@@ -1,0 +1,198 @@
+{
+  "articles": [
+    {
+      "id": "9",
+      "slug": "daily_task_20260208_5",
+      "title": "胃不好就要多喝小米粥？这些“生活经验”，可能正在悄悄坑了你",
+      "category": "每日热点",
+      "word_count": 4132,
+      "status": "published",
+      "update_time": "2026-02-08 12:36",
+      "excerpt": "大家有没有发现，咱们中国人对“养生”这两个字，有一种近乎刻进骨子里的执着和偏爱。这种偏爱往往在生病的时候表现得尤为明显。...",
+      "covers": [
+        "covers/daily_cover_5.jpg"
+      ]
+    },
+    {
+      "id": "8",
+      "slug": "daily_task_20260208_4",
+      "title": "春运带娃防走失指南：作为爸爸，我最怕的不是累，而是那个“万一”",
+      "category": "每日热点",
+      "word_count": 4303,
+      "status": "published",
+      "update_time": "2026-02-08 12:36",
+      "excerpt": "又到了一年一度规模宏大的春运。火车站里、机场大厅、长途汽车站，放眼望去，到处都是拎着大包小包、拖家带口、脸上写满疲惫却又满怀憧憬的人。看着那些孩子在候车厅里好奇的眼神，我仿佛看到了几年前带着琪琪在春运...",
+      "covers": [
+        "covers/daily_cover_4.jpg"
+      ]
+    },
+    {
+      "id": "7",
+      "slug": "daily_task_20260208_3",
+      "title": "你现在的手机号多少年没换了？那个一直不换号的人，到底在坚持什么？",
+      "category": "每日热点",
+      "word_count": 4838,
+      "status": "published",
+      "update_time": "2026-02-08 12:36",
+      "excerpt": "今天在整理书房旧物的时候，偶然从抽屉的一个被遗忘的角落里，翻出了几个款式各异的旧手机。有那种带长天线的、按键都磨平了的诺基亚，有曾经风靡一时的翻盖摩托罗拉，还有几台屏幕已经碎成蜘蛛网、满是划痕的早年安...",
+      "covers": [
+        "covers/daily_cover_3.jpg"
+      ]
+    },
+    {
+      "id": "6",
+      "slug": "daily_task_20260208_2",
+      "title": "全球汽车巨头也“爆雷”了：在这个不确定的时代，我们拿什么来保命？",
+      "category": "每日热点",
+      "word_count": 4078,
+      "status": "published",
+      "update_time": "2026-02-08 12:36",
+      "excerpt": "这两天，我看到一个挺让人唏嘘的新闻，甚至可以说是在职场圈子里扔下了一颗重磅炸弹：全球第四大汽车巨头斯特兰蒂斯（Stellantis），半年的亏损竟然高达1500亿！不仅如此，他们还宣布了大规模的裁员计...",
+      "covers": [
+        "covers/daily_cover_2.jpg"
+      ]
+    },
+    {
+      "id": "5",
+      "slug": "daily_task_20260208_1",
+      "title": "机票太贵不团圆：那些留在异地过年的人，都在想些什么？",
+      "category": "每日热点",
+      "word_count": 4403,
+      "status": "published",
+      "update_time": "2026-02-08 12:36",
+      "excerpt": "这两天，我在热搜上看到一个挺扎心的词条：机票太贵，我和父母决定春节不团圆。...",
+      "covers": [
+        "covers/daily_cover_1.jpg"
+      ]
+    },
+    {
+      "id": "1",
+      "slug": "article_attention_hijack",
+      "title": "看电影忍不住刷手机：我们的“注意力”被谁偷走了？",
+      "category": "职场洞察",
+      "word_count": 1680,
+      "status": "ready",
+      "update_time": "2026-02-07 12:15",
+      "excerpt": "上周末，我带琪琪去看了一场她期待已久的新电影。电影院里光线昏暗，巨大的银幕上色彩绚丽，琪琪屏住呼吸...",
+      "prompt": "A person with round frame glasses and a yellow sweater sitting in a dark movie theater. Face illuminated by intense bluish light. Cinematic lighting, deep shadows, 21:9 ratio.",
+      "covers": [
+        "covers/attention_hijack_v3.jpg",
+        "covers/attention_hijack_v2.jpg",
+        "covers/attention_hijack_v1.jpg"
+      ]
+    },
+    {
+      "id": "2",
+      "slug": "article_death_education",
+      "title": "教女儿直面死亡的患癌父亲去世：生命最沉重也最温柔的一课",
+      "category": "温情教育",
+      "word_count": 1550,
+      "status": "ready",
+      "update_time": "2026-02-07 12:15",
+      "excerpt": "今天早上，我在朋友圈看到一个令人心碎的消息：那位曾因“教 5 岁女儿直面死亡”而感动无数人的患癌爸爸...",
+      "prompt": "A warm indoor scene during sunset. A man with round frame glasses and a yellow sweater. 21:9 ratio."
+    },
+    {
+      "id": "3",
+      "slug": "article_scifi_dad",
+      "title": "长沙全职奶爸自制“科幻战甲”：为了女儿，我们能变得多酷？",
+      "category": "硬核父爱",
+      "word_count": 1620,
+      "status": "ready",
+      "update_time": "2026-02-07 12:15",
+      "excerpt": "最近，我被一个来自长沙的“硬核同行”刷屏了。这位爸爸是一位全职奶爸，他硬是在自家的车库里，用一堆废旧塑料、金属零件和几十个日日夜夜，给女儿手工打造了一套巨大的、闪着冷光的“科幻战甲”...",
+      "prompt": "A workshop filled with tools. A man with round frame glasses and a yellow sweater standing next to a massive sci-fi exoskeleton armor. 21:9 ratio."
+    },
+    {
+      "id": "4",
+      "slug": "article_new_three_golds",
+      "title": "年轻人配齐“新三金”：在不确定的年代，寻找实打实的安全感",
+      "category": "理财觉醒",
+      "word_count": 1580,
+      "status": "ready",
+      "update_time": "2026-02-07 12:15",
+      "excerpt": "最近，我发现一个挺有意思的现象。以前年轻人过节想买点什么犒劳自己，要么是名牌包包，要么是新款电子产品。但现在，话题已经悄悄转向了——“今天黄金跌了吗？”、“你这个月攒了几个金豆子？”...",
+      "prompt": "Minimalist flat lay on a wooden table. A glass jar with gold beans, a gold bar, and a gold ring. 21:9 ratio."
+    }
+  ],
+  "calendar": [
+    {
+      "date": "2-08",
+      "status": "已发布",
+      "title": "胃不好就要多喝小米粥",
+      "filename": "daily_task_5.md",
+      "visual": "治愈动漫"
+    },
+    {
+      "date": "2-08",
+      "status": "已发布",
+      "title": "春运带娃防走失指南：",
+      "filename": "daily_task_4.md",
+      "visual": "治愈动漫"
+    },
+    {
+      "date": "2-08",
+      "status": "已发布",
+      "title": "你现在的手机号多少年",
+      "filename": "daily_task_3.md",
+      "visual": "治愈动漫"
+    },
+    {
+      "date": "2-08",
+      "status": "已发布",
+      "title": "全球汽车巨头也“爆雷",
+      "filename": "daily_task_2.md",
+      "visual": "治愈动漫"
+    },
+    {
+      "date": "2-08",
+      "status": "已发布",
+      "title": "机票太贵不团圆：那些",
+      "filename": "daily_task_1.md",
+      "visual": "治愈动漫"
+    },
+    {
+      "date": "2-07",
+      "status": "就绪",
+      "title": "注意力被偷走",
+      "filename": "article_attention_hijack.md",
+      "visual": "电影感"
+    },
+    {
+      "date": "2-07",
+      "status": "就绪",
+      "title": "生命温柔一课",
+      "filename": "article_death_education.md",
+      "visual": "暖色调"
+    },
+    {
+      "date": "2-07",
+      "status": "就绪",
+      "title": "长沙机甲奶爸",
+      "filename": "article_scifi_dad.md",
+      "visual": "工业风"
+    },
+    {
+      "date": "2-07",
+      "status": "就绪",
+      "title": "年轻人新三金",
+      "filename": "article_new_three_golds.md",
+      "visual": "极简风"
+    }
+  ],
+  "stats": {
+    "total_reads": 32800,
+    "total_likes": 1452,
+    "new_followers": 128
+  },
+  "activities": [
+    {
+      "time": "17:05",
+      "msg": "发布 Orange Studio 5.0，引入 JSON 数据驱动模型，打通长文异步加载。"
+    },
+    {
+      "time": "16:55",
+      "msg": "建立数字化存储模型，数据与界面正式脱钩。"
+    }
+  ]
+}
